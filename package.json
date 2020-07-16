@@ -1,0 +1,24 @@
+{
+  "name": "tfm_backend",
+  "version": "1.0.0",
+  "description": "TFM Rubrics backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgeron/tfm_rubrics_backend.git"
+  },
+  "author": "Jorge Roncel Camero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jorgeron/tfm_rubrics_backend/issues"
+  },
+  "homepage": "https://github.com/jorgeron/tfm_rubrics_backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.24"
+  }
+}
