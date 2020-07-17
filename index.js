@@ -5,6 +5,20 @@ var express = require('express'),
     bodyParser = require('body-parser');
 
 
+var mongoDBURI = process.env.MONGO_DB_URI || "mongodb+srv://admin:rXiTW4Zx4dEJs8K@cluster0.krayx.mongodb.net/tfm_rubrics?retryWrites=true&w=majority";
+console.log("Trying to connect DB to: " + mongoDBURI);
+mongoose.connect(mongoDBURI, {
+    poolSize: 10, // Up to 10 sockets
+    connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
+    socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+    family: 4, // skip trying IPv6
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+});
+console.log("DB connection successfully");
+
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
