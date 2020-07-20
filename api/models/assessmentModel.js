@@ -1,6 +1,6 @@
 'use strict';
 const Rubrics = require('../models/rubricModel');
-const Competences = require('../models/competenceModel');
+//const Competences = require('../models/competenceModel');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -11,7 +11,7 @@ var ScoreSchema = new Schema({
     competence: {
         type: Schema.Types.ObjectId,
         required: true,
-        ref: Competences
+        ref: 'Competences'
     },
     competenceName: {
         type: String,

@@ -17,11 +17,11 @@ var ActorSchema = new Schema({
         unique: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
-    role: [{
+    role: {
         type: String,
         required: 'Kindly enter the user role(s)',
         enum: ['ADMINISTRATOR', 'TEACHER']
-    }],
+    },
 }, { strict: false });
 
 module.exports = mongoose.model('Actors', ActorSchema);

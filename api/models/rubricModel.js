@@ -1,5 +1,5 @@
 'use strict';
-const Competences = require('../models/competenceModel');
+//const Competences = require('../models/competenceModel');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -17,7 +17,7 @@ var RubricSchema = new Schema({
         required: true,
         ref: 'Actors'
     },
-    competences: [Competences]
+    competences: [Schema.Types.Mixed]
 }, { strict: false });
 
 module.exports = mongoose.model('Rubrics', RubricSchema);

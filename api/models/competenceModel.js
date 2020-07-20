@@ -24,9 +24,9 @@ var LevelDescriptorSchema = new Schema({
 var CompetenceSchema = new Schema({
     // Si no funciona así, añadir ObjectId y otro atributo areaName
     area: {
-        type: Schema.Types.Embedded,
+        type: Schema.Types.Mixed,
         required: 'Area id required',
-        ref: Areas
+        ref: 'Areas'
     },
     name: {
         type: String,
