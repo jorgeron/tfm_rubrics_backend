@@ -6,7 +6,8 @@ var Schema = mongoose.Schema;
 var AreaSchema = new Schema({
     name: {
         type: String,
-        required: 'Kindly enter the area name'
+        required: 'Kindly enter the area name',
+        unique: true,
     }
 }, { strict: false });
 
