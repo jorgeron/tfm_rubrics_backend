@@ -31,7 +31,20 @@ exports.create_an_actor = function (req, res) {
 
 
 exports.read_an_actor = function (req, res) {
-    // TODO
+    Actor.findById(req.params.actorId, function (err, actor) {
+        if (err) {
+            res.status(500);
+            res.send(err);
+        } else {
+            if (actor) {
+                res.json(actor);
+            } else {
+                res.status(404);
+                res.send([])
+            }
+
+        }
+    });
 };
 
 exports.update_an_actor = function (req, res) {
@@ -39,5 +52,15 @@ exports.update_an_actor = function (req, res) {
 };
 
 exports.delete_an_actor = function (req, res) {
-    // TODO
+    Actor.deleteOne({
+        _id: req.params.actorId
+    }, function (err, actor) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json({
+                message: 'Actor successfully deleted'
+            });
+        }
+    });
 };
