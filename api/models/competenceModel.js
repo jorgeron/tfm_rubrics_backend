@@ -22,15 +22,21 @@ var LevelDescriptorSchema = new Schema({
  * COMPETENCES
  */
 var CompetenceSchema = new Schema({
-    // Si no funciona así, añadir ObjectId y otro atributo areaName
+    // Me hace falta realmente así??
     area: {
         type: Schema.Types.Mixed,
+        required: 'Area is required',
+        ref: 'Areas'
+    },
+    area_id: {
+        type: Schema.Types.ObjectId,
         required: 'Area id required',
         ref: 'Areas'
     },
     name: {
         type: String,
-        required: 'Kindly enter the competence name'
+        required: 'Kindly enter the competence name',
+        unique: true
     },
     proficiencyLevels: [LevelDescriptorSchema]
 }, { strict: false });

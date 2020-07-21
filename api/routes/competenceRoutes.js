@@ -5,19 +5,16 @@ module.exports = function (app) {
 
 
     /**
-   * Get an specific competence.
-   *    RequiredRoles: none
    * 
-   * Modify a competence.
+   * Update a competence.
    *    RequiredRoles: Administrator
    * 
    * Delete a competence
    * @section competences
-   * @type get put delete
+   * @type put delete
    * @url /v1/competences/:competenceId
   */
     app.route('/v1/competences/:competenceId')
-        .get(competenceController.read_a_competence)
         .put(competenceController.update_a_competence)
         .delete(competenceController.delete_a_competence);
 };
