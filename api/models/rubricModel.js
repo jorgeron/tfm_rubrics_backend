@@ -17,7 +17,10 @@ var RubricSchema = new Schema({
         required: true,
         ref: 'Actors'
     },
-    competences: [Schema.Types.Mixed]
+    competences: [{
+        type: Schema.Types.Mixed,
+        ref: 'Competences'
+    }]
 }, { strict: false });
 
 module.exports = mongoose.model('Rubrics', RubricSchema);

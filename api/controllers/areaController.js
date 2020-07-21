@@ -56,7 +56,7 @@ exports.delete_area = function (req, res) {
     Area.findById(req.params.idArea, function (err, area) {
         if (!area) {
             res.status(404).json({
-                message: 'Area does not exists'
+                message: 'Area does not exist'
             });
         } else {
             Area.deleteOne({
