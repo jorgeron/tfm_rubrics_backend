@@ -109,3 +109,6 @@ dist
 #Asta Files
 *.asta.lock
 *.jpg.bak
+
+#Firebase keys
+keys/

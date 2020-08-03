@@ -3,6 +3,8 @@ var express = require('express'),
     port = process.env.PORT || 8080,
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
+    admin = require('firebase-admin'),
+    serviceAccount = require('./api/keys/tfm-frontend-firebase-adminsdk-6ov10-76e6630874.json')
     Actor = require('./api/models/actorModel'),
     Area = require('./api/models/areaModel'),
     Assessment = require('./api/models/assessmentModel'),
@@ -28,10 +30,27 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+
+// Avoiding CORS errors
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers",
+    'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method, idToken' //ojo, que si metemos un parametro propio por la cabecera hay que declararlo aquí para que no de el error CORS
+    );
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+
+    next();
+});
+
 app.get("/", (req, res) => {
     res.json({ status: "success", message: "Welcome To Testing API" });
 });
 
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://tfm-frontend.firebaseio.com"
+  });
 
 var routesActor = require('./api/routes/actorRoutes');
 var routesArea = require('./api/routes/areaRoutes');
