@@ -35,10 +35,10 @@ app.use(bodyParser.json());
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers",
-    'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method, idToken' //ojo, que si metemos un parametro propio por la cabecera hay que declararlo aquí para que no de el error CORS
+    'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, idToken' //ojo, que si metemos un parametro propio por la cabecera hay que declararlo aquí para que no de el error CORS
     );
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
-    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    //res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
 
     next();
 });
@@ -57,12 +57,14 @@ var routesArea = require('./api/routes/areaRoutes');
 var routesAssessment = require('./api/routes/assessmentRoutes');
 var routesCompetence = require('./api/routes/competenceRoutes');
 var routesRubric = require('./api/routes/rubricRoutes');
+var routesLogin = require('./api/routes/loginRoutes');
 
 routesActor(app);
 routesArea(app);
 routesAssessment(app);
 routesCompetence(app);
 routesRubric(app);
+routesLogin(app);
 
 app.listen(port, () => console.log('Example app listening on port ' + port))
 

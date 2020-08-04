@@ -1,6 +1,7 @@
 'use strict';
 var mongoose = require('mongoose');
 var Actor = mongoose.model('Actors');
+var admin = require('firebase-admin');
 
 exports.list_all_actors = function (req, res) {
     Actor.find({}, function (err, actors) {

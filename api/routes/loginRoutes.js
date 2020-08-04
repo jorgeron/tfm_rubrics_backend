@@ -11,9 +11,9 @@ module.exports = function(app) {
 	 * @param {string} email
    * @param {string} password
 	*/
-  app.route('/v1/login/')
+  app.route('/v1/login')
 	.get(actors.login_an_actor);
 	
-  app.route('/v2/login/')
+  app.route('/v2/login')
     .get(actors.login_an_actor);
 };
