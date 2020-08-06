@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
  */
 var LevelDescriptorSchema = new Schema({
     level: {
-        type: String,
+        type: Number,
         required: 'Kindly enter the level'
     },
     descriptor: {

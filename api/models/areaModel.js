@@ -8,6 +8,10 @@ var AreaSchema = new Schema({
         type: String,
         required: 'Kindly enter the area name',
         unique: true,
+    },
+    colorCode: {
+        type: String,
+        required: 'Kindly enter the area color code'
     }
 }, { strict: false });
 
