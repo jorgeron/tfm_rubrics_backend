@@ -35,14 +35,12 @@ exports.create_an_actor = function (req, res) {
 exports.read_an_actor = function (req, res) {
     Actor.findById(req.params.actorId, function (err, actor) {
         if (err) {
-            res.status(500);
-            res.send(err);
+            res.status(500).send(err);
         } else {
             if (actor) {
                 res.json(actor);
             } else {
-                res.status(404);
-                res.send([])
+                res.status(404).send([]);
             }
 
         }

@@ -13,6 +13,21 @@ exports.list_all_rubrics_by_teacher = function (req, res) {
     });
 };
 
+exports.get_a_rubric = function (req, res) {
+    Rubric.findById(req.params.idRubric, function (err, rubric) {
+        if (err) {
+            res.status(500).send(err);
+        } else {
+            if (rubric) {
+                res.json(rubric);
+            } else {
+                res.status(404).send([]);
+            }
+        }
+        
+    });
+}
+
 exports.get_all_rubrics = function (req, res) {
     Rubric.find({}, function (err, rubrics) {
         if (err) {

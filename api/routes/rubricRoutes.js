@@ -20,6 +20,10 @@ module.exports = function (app) {
 
 
     /**
+     * Get rubric
+     * RequiredRoles: to be the rubric's owner teacher
+    *                   or an Administrator.
+    * 
     * Put rubric
     *    RequiredRoles: to be the rubric's owner teacher
     *                   or an Administrator.
@@ -29,10 +33,11 @@ module.exports = function (app) {
     *                   or an Administrator.
     *
     * @section rubrics
-    * @type put delete
+    * @type get put delete
     * @url /v1/rubrics/:idRubric
     */
     app.route('/v1/rubrics/:idRubric')
+        .get(rubrics.get_a_rubric)
         .put(rubrics.update_rubric)
         .delete(rubrics.delete_rubric);
 
