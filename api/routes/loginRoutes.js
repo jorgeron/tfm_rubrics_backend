@@ -15,5 +15,8 @@ module.exports = function(app) {
 	.get(actors.login_an_actor);
 	
   app.route('/v2/login')
-    .get(actors.login_an_actor);
+	.get(actors.login_an_actor);
+
+  app.route('/v1/google-login')
+	.get(actors.login_with_google);
 };

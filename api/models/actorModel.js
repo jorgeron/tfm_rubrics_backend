@@ -21,7 +21,7 @@ var ActorSchema = new Schema({
     password: {
         type: String,
         minlength: 5,
-        required: 'Kindly enter the actor password'
+        //required: 'Kindly enter the actor password'
     },
     role: {
         type: String,
@@ -30,10 +30,13 @@ var ActorSchema = new Schema({
     },
     customToken: {
         type: String
+    },
+    idToken: {
+        type: String
     }
 }, { strict: false });
 
-
+/*
 ActorSchema.pre('save', function (callback) {
     var actor = this;
 
@@ -50,7 +53,7 @@ ActorSchema.pre('save', function (callback) {
             callback();
         });
     });
-});
+});*/
 
 ActorSchema.methods.verifyPassword = function (password, cb) {
     bcrypt.compare(password, this.password, function (err, isMatch) {

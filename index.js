@@ -4,13 +4,13 @@ var express = require('express'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     admin = require('firebase-admin'),
-    serviceAccount = require('./api/keys/tfm-frontend-firebase-adminsdk-6ov10-76e6630874.json')
+    serviceAccount = require('./api/keys/tfm-frontend-firebase-adminsdk-6ov10-76e6630874.json'),
     Actor = require('./api/models/actorModel'),
     Area = require('./api/models/areaModel'),
     Assessment = require('./api/models/assessmentModel'),
     Competence = require('./api/models/competenceModel'),
     Rubric = require('./api/models/rubricModel');
-
+    const googleApi = require('./classroom-api');
 
 var mongoDBURI = process.env.MONGO_DB_URI || "mongodb+srv://admin:rXiTW4Zx4dEJs8K@cluster0.krayx.mongodb.net/tfm_rubrics?retryWrites=true&w=majority";
 console.log("Trying to connect DB to: " + mongoDBURI);
@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers",
-    'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, idToken' //ojo, que si metemos un parametro propio por la cabecera hay que declararlo aquí para que no de el error CORS
+        'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, idToken' //ojo, que si metemos un parametro propio por la cabecera hay que declararlo aquí para que no de el error CORS
     );
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
     //res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
@@ -47,10 +47,20 @@ app.get("/", (req, res) => {
     res.json({ status: "success", message: "Welcome To Testing API" });
 });
 
+/*app.get("/v1/google-login", (req, res) => {
+    if (req.query.code) {
+        googleApi.getGoogleAccountFromCode(req.query.code).then((result) => {
+            console.log('result: ', result);
+        });
+    } else {
+        res.send({url: googleApi.urlGoogle()})
+    }
+});*/
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://tfm-frontend.firebaseio.com"
-  });
+});
 
 var routesActor = require('./api/routes/actorRoutes');
 var routesArea = require('./api/routes/areaRoutes');
