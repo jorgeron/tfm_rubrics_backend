@@ -52,7 +52,7 @@ module.exports.urlGoogle = () => {
 
 function getGoogleClassroomApi(auth) {
     return google.classroom({ version: 'v1', auth });
-  }
+}
 
 module.exports.getGoogleAccountFromCode = async (code) => {
     const auth = createConnection();
@@ -84,3 +84,23 @@ module.exports.getGoogleAccountFromCode = async (code) => {
         tokens: tokens, // you can save these to the user if you ever want to get their details without making them log in again
     };
 }
+
+module.exports.getCurrentUserEmail = async (tokens) => {
+    const auth = createConnection();
+    auth.setCredentials(tokens);
+
+    const classroom = getGoogleClassroomApi(auth);
+    const me = await classroom.userProfiles.get({ userId: 'me' });
+
+    return me.data.emailAddress;
+}
+
+module.exports.getCourses = async (tokens) => {
+    const auth = createConnection();
+    auth.setCredentials(tokens);
+
+    const classroom = getGoogleClassroomApi(auth);
+    const res = await classroom.courses.list({ teacherId: "me", courseStates: "ACTIVE" });
+
+    return res.data.courses ? [...res.data.courses] : [];
+};

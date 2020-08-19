@@ -33,7 +33,11 @@ var ActorSchema = new Schema({
     },
     idToken: {
         type: String
-    }
+    },
+    access_token: {
+        type: String
+    },
+    tokens: [Object]
 }, { strict: false });
 
 /*

@@ -33,10 +33,15 @@ var AssessmentSchema = new Schema({
         required: true,
         ref: Rubrics
     },
-    studentEmail: {
+    /*studentEmail: {
         type: String,
         required: 'Kindly enter the student email',
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
+    },*/
+    student: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'Students'
     },
     activity: {
         type: String,

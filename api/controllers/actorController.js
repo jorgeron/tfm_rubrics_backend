@@ -132,7 +132,8 @@ exports.login_with_google = async function (req, res) {
         else if (!actor) {
           //CREAR ACTOR
           var new_actor = new Actor({email: result.email, name: result.name,
-            surname:result.surname, role:'TEACHER', idToken:result.tokens.id_token});
+            surname:result.surname, role:'TEACHER', idToken:result.tokens.id_token,
+            tokens:result.tokens});
 
           new_actor.save(function (err, saved_actor) {
 
@@ -148,14 +149,9 @@ exports.login_with_google = async function (req, res) {
             }
           });
         } else {
-          /*try {
-            var customToken = await admin.auth().createCustomToken(actor.email);
-          } catch (error) {
-            console.log("Error creating custom token:", error);
-          }
-          actor.customToken = customToken;
-          console.log('Login Success... sending JSON with custom token');*/
           actor.idToken = result.tokens.idToken;
+          actor.tokens = result.tokens;
+          actor.access_token = result.tokens.access_token;
           res.json(actor);
         }
       });
