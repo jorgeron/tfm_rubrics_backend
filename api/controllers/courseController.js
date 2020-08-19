@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 var Course = mongoose.model('Courses');
 var Actor = mongoose.model('Actors');
 var googleApi = require('../../classroom-api');
-const actorRoutes = require('../routes/actorRoutes');
 
 exports.get_my_courses = async function (req, res) {
     var tokens = JSON.parse(req.headers.tokens)[0];
