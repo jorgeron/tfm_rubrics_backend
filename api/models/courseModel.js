@@ -21,8 +21,7 @@ var CourseSchema = new Schema({
         required: false
     },
     room: {
-        type: String,
-        required: true
+        type: String
     }
 }, { strict: false });
 
