@@ -114,3 +114,13 @@ module.exports.getStudentsByCourse = async (idCourse, tokens) => {
 
     return res.data.students ? [...res.data.students] : [];
 };
+
+module.exports.getActivitiesByCourse = async (idCourse, tokens) => {
+    const auth = createConnection();
+    auth.setCredentials(tokens);
+
+    const classroom = getGoogleClassroomApi(auth);
+    const res = await classroom.courses.courseWork.list({ courseId: idCourse});
+
+    return res.data.courseWork ? [...res.data.courseWork] : [];
+};

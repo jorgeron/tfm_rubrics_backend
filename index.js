@@ -12,6 +12,7 @@ var express = require('express'),
     Rubric = require('./api/models/rubricModel');
     Course = require('./api/models/courseModel');
     Student = require('./api/models/studentModel');
+    Activity = require('./api/models/activityModel');
     const googleApi = require('./classroom-api');
 
 var mongoDBURI = process.env.MONGO_DB_URI || "mongodb+srv://admin:rXiTW4Zx4dEJs8K@cluster0.krayx.mongodb.net/tfm_rubrics?retryWrites=true&w=majority";
