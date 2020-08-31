@@ -9,9 +9,8 @@ var Schema = mongoose.Schema;
  */
 var ScoreSchema = new Schema({
     competence: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'Competences'
+        type: String,
+        required: true
     },
     competenceName: {
         type: String,
@@ -39,13 +38,15 @@ var AssessmentSchema = new Schema({
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },*/
     student: {
-        type: Schema.Types.ObjectId,
-        required: true,
+        type: String,
         ref: 'Students'
     },
     activity: {
         type: String,
         required: 'Kindly enter the activity',
+    },
+    comment: {
+        type: String,
     },
     scores: [ScoreSchema]
 }, { strict: false });

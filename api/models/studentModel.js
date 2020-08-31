@@ -2,6 +2,25 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+var OverallLevel = new Schema({
+    competenceId: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        ref: 'Competences'
+    },
+    competenceName: {
+        type: String,
+    },
+    level: {
+        type: Number,
+        required: 'Kindly enter the level'
+    },
+    descriptor: {
+        type: String
+    }
+}, { strict: false });
+
+
 var StudentSchema = new Schema({
     _id: {
         type: String
@@ -22,6 +41,9 @@ var StudentSchema = new Schema({
     course: {
         type: String,
         ref: 'Courses'
+    },
+    overallLevels: {
+        type: [OverallLevel]
     }
 }, { strict: false });
 

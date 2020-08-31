@@ -3,6 +3,9 @@ module.exports = function (app) {
     var assessments = require('../controllers/assessmentController');
     // var authController = require('../controllers/authController');
 
+    app.route('/v1/assessments')
+        .post(assessments.create_assessment)
+
     /**
    * Get an specific assessment.
    *    RequiredRoles: to be the assessment's owner teacher
