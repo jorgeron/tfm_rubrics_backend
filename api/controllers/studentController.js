@@ -26,7 +26,8 @@ exports.get_students_by_course = async function (req, res) {
                             name: classroom_student.profile.name.givenName,
                             surname: classroom_student.profile.name.familyName,
                             email: classroom_student.profile.emailAddress,
-                            course: classroom_student.courseId
+                            course: classroom_student.courseId,
+                            overallLevels: []
                         });
     
                         console.log('new_Student: ', new_student);
