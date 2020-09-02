@@ -4,7 +4,7 @@ module.exports = function (app) {
     // var authController = require('../controllers/authController');
 
     app.route('/v1/assessments')
-        .post(assessments.create_assessment)
+        .post(assessments.create_an_assessment)
 
     /**
    * Get an specific assessment.
