@@ -48,6 +48,7 @@ exports.create_an_assessment = function (req, res) {
                         }
                         Student.findOneAndUpdate({_id:student._id}, {$set: {"overallLevels":student.overallLevels}}, {new:true}, function(err, updated_student) {
                             console.log('UPDATED STD: ', updated_student);
+                            res.json(updated_student);
                         });
 
                     });

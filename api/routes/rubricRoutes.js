@@ -57,5 +57,5 @@ module.exports = function (app) {
     */
    app.route('/v1/rubrics/:idRubric/assessments')
    .get(assessments.list_assessments_by_rubric)
-   .post(assessments.create_assessment);
+   //.post(assessments.create_an_assessment);
 };
