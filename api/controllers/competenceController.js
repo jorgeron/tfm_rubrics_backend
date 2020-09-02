@@ -13,6 +13,16 @@ exports.list_competences_by_area = function (req, res) {
     });
 };
 
+exports.list_all_competences = function (req, res) {
+    Competence.find({}, function (err, competences) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(competences);
+        }
+    });
+};
+
 exports.create_competence = function (req, res) {
     Areas.findById(req.params.idArea, function (err, area) {
         if (err) {

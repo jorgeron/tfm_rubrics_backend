@@ -3,6 +3,8 @@ module.exports = function (app) {
     var competenceController = require('../controllers/competenceController');
     // var authController = require('../controllers/authController');
 
+    app.route('/v1/competences')
+        .get(competenceController.list_all_competences);
 
     /**
    * 
