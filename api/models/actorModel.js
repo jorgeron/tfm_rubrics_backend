@@ -18,11 +18,11 @@ var ActorSchema = new Schema({
         unique: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
-    password: {
+    /*password: {
         type: String,
         minlength: 5,
         //required: 'Kindly enter the actor password'
-    },
+    },*/
     role: {
         type: String,
         required: 'Kindly enter the user role(s)',

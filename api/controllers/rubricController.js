@@ -46,19 +46,24 @@ exports.create_rubric = function (req, res) {
         if (err) {
             res.status(500).send(err = 'Competences error');
         } else {
-            new_rubric.competences = competences;
-            new_rubric.save(function (err, rubric) {
-                if (err) {
-                    if (err.code === 11000) {
-                        res.status(409);
+            if (competences.length > 0) {
+                new_rubric.competences = competences;
+                new_rubric.save(function (err, rubric) {
+                    if (err) {
+                        if (err.code === 11000) {
+                            res.status(409);
+                        } else {
+                            res.status(500);
+                        }
+                        res.send(err);
                     } else {
-                        res.status(500);
+                        res.json(rubric);
                     }
-                    res.send(err);
-                } else {
-                    res.json(rubric);
-                }
-            });
+                });
+            } else {
+                res.status(400).send(err);
+            }
+            
         }
     });
 };
