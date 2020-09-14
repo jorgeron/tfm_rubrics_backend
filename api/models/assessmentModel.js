@@ -42,7 +42,8 @@ var AssessmentSchema = new Schema({
         ref: 'Students'
     },
     activity: {
-        type: String,
+        type: Schema.Types.Mixed,
+        ref: 'Activities',
         required: 'Kindly enter the activity',
     },
     comment: {

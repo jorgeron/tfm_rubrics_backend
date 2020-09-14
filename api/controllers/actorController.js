@@ -119,7 +119,9 @@ exports.login_an_actor = async function (req, res) {
 exports.login_with_google = async function (req, res) {
   console.log('starting login an actor with google');
   if (req.query.code) {
+    console.log("code: ", req.query.code);
     googleApi.getGoogleAccountFromCode(req.query.code).then((result) => {
+      console.log("result: ", result);
       var actorEmail = result.email;
       Actor.findOne({
         email: actorEmail

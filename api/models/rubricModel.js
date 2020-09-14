@@ -1,5 +1,4 @@
 'use strict';
-//const Competences = require('../models/competenceModel');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
@@ -20,6 +19,10 @@ var RubricSchema = new Schema({
     competences: [{
         type: Schema.Types.Mixed,
         ref: 'Competences'
+    }],
+    activities: [{
+        type: Schema.Types.Mixed,
+        ref: 'Activities'
     }]
 }, { strict: false });
 

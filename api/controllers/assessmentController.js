@@ -1,7 +1,9 @@
 'use strict';
 var mongoose = require('mongoose');
+const rubricModel = require('../models/rubricModel');
 var Assessment = mongoose.model('Assessments');
 var Student = mongoose.model('Students');
+var Rubric = mongoose.model('Rubrics');
 
 exports.read_an_assessment = function (req, res) {
     // TODO
@@ -12,6 +14,7 @@ exports.read_an_assessment = function (req, res) {
 
 exports.create_an_assessment = function (req, res) {
     var new_assessment = new Assessment(req.body);
+    console.log("NEW assessment: ", new_assessment);
     new_assessment.save(function (err, assessment) {
         if (err) {
             res.status(500).send(err);
@@ -54,7 +57,17 @@ exports.create_an_assessment = function (req, res) {
                     });
                 }
             });
-
+            Rubric.findById(assessment.rubric, function(err, rubric) {
+                if (rubric) {
+                    const activities = rubric.activities;
+                    console.log("new_assessment.activity: ", new_assessment.activity);
+                    activities.push(new_assessment.activity);
+                    Rubric.findOneAndUpdate({_id:rubric._id}, {$set: {"activities":activities}}, function(err, updated_rubric) {
+                        console.log('UDPATED RUBRIC');
+                    })
+                }
+                
+            })
             
         }
     });
